@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Tasks</h1>
+
+<a class="btn" href="/tasks/add/">+ Add Task</a>
+
+<table>
+
+<tr>
+    <th>Task</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+
+{% for task in tasks %}
+
+<tr>
+
+<td>{{ task.title }}</td>
+
+<td>
+    {% if task.completed %}
+        <span class="success">Completed</span>
+    {% else %}
+        Pending
+    {% endif %}
+</td>
+
+<td>
+    <a class="btn" href="/tasks/complete/{{ task.id }}/">
+        {% if task.completed %}
+            Undo
+        {% else %}
+            Complete
+        {% endif %}
+    </a>
+
+    <a class="btn danger" href="/tasks/delete/{{ task.id }}/">
+        Delete
+    </a>
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+    <td colspan="3">No tasks yet.</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-box">
+
+<h1>Add Problem</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>Problem Title</label>
+<input type="text" name="title" required>
+
+<label>Platform</label>
+
+<select name="platform">
+    <option>LeetCode</option>
+    <option>Codeforces</option>
+    <option>Other</option>
+</select>
+
+<label>Difficulty</label>
+
+<select name="difficulty">
+    <option>Easy</option>
+    <option>Medium</option>
+    <option>Hard</option>
+</select>
+
+<label>Topic</label>
+<input type="text" name="topic" placeholder="Arrays, DP, Graphs..." required>
+
+<label>
+    <input type="checkbox" name="solved" style="width:auto;">
+    Solved
+</label>
+
+<br><br>
+
+<button type="submit">Add Problem</button>
+
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Welcome, {{ user.username }} 👋</h1>
+<p>Track your coding progress and stay consistent.</p>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>Total Problems</h3>
+        <div class="number">{{ total }}</div>
+    </div>
+
+    <div class="card">
+        <h3>Problems Solved</h3>
+        <div class="number">{{ solved }}</div>
+    </div>
+
+    <div class="card">
+        <h3>Pending Tasks</h3>
+        <div class="number">{{ pending }}</div>
+    </div>
+
+</div>
+
+<br><br>
+
+<div class="card">
+    <h2>Recent Problems</h2>
+
+    <table>
+        <tr>
+            <th>Problem</th>
+            <th>Platform</th>
+            <th>Difficulty</th>
+            <th>Status</th>
+        </tr>
+
+        {% for problem in problems %}
+        <tr>
+            <td>{{ problem.title }}</td>
+            <td>{{ problem.platform }}</td>
+            <td>{{ problem.difficulty }}</td>
+            <td>
+                {% if problem.solved %}
+                    <span class="success">Solved</span>
+                {% else %}
+                    Pending
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No problems yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
